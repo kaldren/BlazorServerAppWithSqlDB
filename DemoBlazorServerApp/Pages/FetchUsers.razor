@@ -1,0 +1,45 @@
+﻿@page "/users"
+
+<PageTitle>List of users</PageTitle>
+
+@using DemoBlazorServerApp.Data
+@inject UserService userservice
+
+<h1>List of users</h1>
+
+
+@if (users == null)
+{
+    <p><em>Loading users...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in users)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ICollection<User>? users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await userservice.GetUsersAsync();
+    }
+}

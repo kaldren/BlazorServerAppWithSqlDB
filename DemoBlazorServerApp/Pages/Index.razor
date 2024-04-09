@@ -1,0 +1,12 @@
+﻿@inject IConfiguration config
+@page "/"
+
+
+<PageTitle>Index</PageTitle>
+
+<h1>
+    Your db name is: @config["DB_NAME"]</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
